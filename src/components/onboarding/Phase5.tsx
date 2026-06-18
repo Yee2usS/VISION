@@ -1,13 +1,13 @@
 'use client'
 
-import { useState } from 'react'
 import PhaseWrapper from './PhaseWrapper'
 import Button from '@/components/ui/Button'
 import { OnboardingAnswers } from '@/types'
 
 interface Phase5Props {
-  data: OnboardingAnswers['phase5']
-  onNext: (data: OnboardingAnswers['phase5']) => void
+  values: OnboardingAnswers['phase5']
+  onUpdate: (values: OnboardingAnswers['phase5']) => void
+  onNext: () => void
 }
 
 const revenueOptions: { value: '500' | '2000' | '5000' | 'more'; label: string }[] = [
@@ -22,34 +22,33 @@ const incomeOptions: { value: 'complement' | 'fulltime'; label: string; desc: st
   { value: 'fulltime', label: 'Reconversion totale', desc: 'Tu veux en vivre à plein temps' },
 ]
 
-// 'more' maps to '' in the type union (timeHorizon: '1month' | '3months' | '6months' | '')
-// The empty string '' represents "Plus" / no specific horizon
-const horizonOptions: { value: '1month' | '3months' | '6months' | 'more'; label: string; typeValue: '1month' | '3months' | '6months' | '' }[] = [
-  { value: '1month', label: '1 mois', typeValue: '1month' },
-  { value: '3months', label: '3 mois', typeValue: '3months' },
-  { value: '6months', label: '6 mois', typeValue: '6months' },
-  { value: 'more', label: 'Plus', typeValue: '' },
+// timeHorizon type is '1month' | '3months' | '6months' | ''
+// '' represents the "Plus" / no specific horizon option
+const horizonOptions: { typeValue: '1month' | '3months' | '6months' | ''; label: string }[] = [
+  { typeValue: '1month', label: '1 mois' },
+  { typeValue: '3months', label: '3 mois' },
+  { typeValue: '6months', label: '6 mois' },
+  { typeValue: 'more' as unknown as '', label: 'Plus' },
 ]
 
-export default function Phase5({ data, onNext }: Phase5Props) {
-  const [values, setValues] = useState<OnboardingAnswers['phase5']>(data)
+export default function Phase5({ values, onUpdate, onNext }: Phase5Props) {
+  function update<K extends keyof OnboardingAnswers['phase5']>(
+    key: K,
+    val: OnboardingAnswers['phase5'][K]
+  ) {
+    onUpdate({ ...values, [key]: val })
+  }
+
+  // hoursPerWeek defaults to 10 so it's always > 0
+  // timeHorizon is valid if it's any of the defined options (including '' for "Plus")
+  // We track whether user has made a selection via whether timeHorizon changed from initial
+  const horizonChosen = values.timeHorizon !== '' || horizonOptions.some(
+    (o) => (o.typeValue as string) === 'more' && values.timeHorizon === ''
+  )
 
   const canContinue =
     values.revenueGoal !== '' &&
-    values.incomeLogic !== '' &&
-    values.hoursPerWeek > 0 &&
-    // horizon is either a concrete value or the user explicitly chose '' (Plus)
-    (values.timeHorizon !== '' || horizonOptions.some((o) => o.typeValue === values.timeHorizon))
-
-  // Simpler: consider any selection of the horizon valid, including ''
-  // Track whether user has made a horizon selection separately
-  const [horizonSelected, setHorizonSelected] = useState(data.timeHorizon !== '' || false)
-
-  const canActuallyContinue =
-    values.revenueGoal !== '' &&
-    values.incomeLogic !== '' &&
-    values.hoursPerWeek > 0 &&
-    horizonSelected
+    values.incomeLogic !== ''
 
   return (
     <PhaseWrapper
@@ -72,7 +71,7 @@ export default function Phase5({ data, onNext }: Phase5Props) {
             max={40}
             step={1}
             value={values.hoursPerWeek}
-            onChange={(e) => setValues((prev) => ({ ...prev, hoursPerWeek: Number(e.target.value) }))}
+            onChange={(e) => update('hoursPerWeek', Number(e.target.value))}
             className="w-full cursor-pointer"
             style={{ accentColor: '#C9A84C' }}
           />
@@ -91,7 +90,7 @@ export default function Phase5({ data, onNext }: Phase5Props) {
             {revenueOptions.map(({ value, label }) => (
               <button
                 key={value}
-                onClick={() => setValues((prev) => ({ ...prev, revenueGoal: value }))}
+                onClick={() => update('revenueGoal', value)}
                 className={`py-3 px-4 rounded-xl border text-sm font-medium transition-all duration-200 ${
                   values.revenueGoal === value
                     ? 'border-gold bg-gold/5 text-gold'
@@ -113,7 +112,7 @@ export default function Phase5({ data, onNext }: Phase5Props) {
             {incomeOptions.map(({ value, label, desc }) => (
               <button
                 key={value}
-                onClick={() => setValues((prev) => ({ ...prev, incomeLogic: value }))}
+                onClick={() => update('incomeLogic', value)}
                 className={`text-left p-4 rounded-xl border transition-all duration-200 ${
                   values.incomeLogic === value
                     ? 'border-gold bg-gold/5 text-white'
@@ -133,15 +132,17 @@ export default function Phase5({ data, onNext }: Phase5Props) {
             Dans combien de temps tu veux voir des premiers résultats ?
           </label>
           <div className="grid grid-cols-4 gap-2">
-            {horizonOptions.map(({ value, label, typeValue }) => (
+            {[
+              { tv: '1month' as const, label: '1 mois' },
+              { tv: '3months' as const, label: '3 mois' },
+              { tv: '6months' as const, label: '6 mois' },
+              { tv: '' as const, label: 'Plus' },
+            ].map(({ tv, label }) => (
               <button
-                key={value}
-                onClick={() => {
-                  setValues((prev) => ({ ...prev, timeHorizon: typeValue }))
-                  setHorizonSelected(true)
-                }}
+                key={label}
+                onClick={() => update('timeHorizon', tv)}
                 className={`py-3 px-2 rounded-xl border text-sm font-medium transition-all duration-200 text-center ${
-                  horizonSelected && values.timeHorizon === typeValue
+                  values.timeHorizon === tv
                     ? 'border-gold bg-gold/10 text-gold'
                     : 'border-[#1F1F23] bg-surface text-zinc-400 hover:border-zinc-600'
                 }`}
@@ -155,8 +156,8 @@ export default function Phase5({ data, onNext }: Phase5Props) {
 
       <Button
         size="lg"
-        disabled={!canActuallyContinue}
-        onClick={() => onNext(values)}
+        disabled={!canContinue}
+        onClick={onNext}
         className="w-full"
       >
         Continuer
