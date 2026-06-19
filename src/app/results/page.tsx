@@ -2,7 +2,7 @@
 
 import { useEffect, useState, Suspense } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
-import { Lock, Check, ArrowRight, ChevronDown } from 'lucide-react'
+import { Lock, Check, ArrowRight, ChevronDown, Calendar, Phone } from 'lucide-react'
 import Button from '@/components/ui/Button'
 import { GeneratedPlan } from '@/types'
 
@@ -245,12 +245,34 @@ function ResultsContent() {
             </div>
           </div>
 
-          <p className="text-center text-zinc-600 text-sm mt-6">
-            Tu veux du coaching 1-on-1 ?{' '}
-            <a href="#" className="text-gold hover:underline">
-              Réserve un appel gratuit
-            </a>
-          </p>
+        </section>
+
+        {/* Coaching 1-on-1 */}
+        <section>
+          <div className="relative rounded-2xl border border-gold/30 bg-surface overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-gold/5 to-transparent pointer-events-none" />
+            <div className="relative px-8 py-10 flex flex-col md:flex-row items-center gap-8">
+              <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-gold/10 border border-gold/20 flex items-center justify-center">
+                <Phone className="w-6 h-6 text-gold" />
+              </div>
+              <div className="flex-1 text-center md:text-left">
+                <p className="text-xs font-medium text-gold uppercase tracking-widest mb-2">Coaching 1-on-1</p>
+                <h3 className="text-xl font-bold text-white mb-2">Tu veux aller plus vite ?</h3>
+                <p className="text-zinc-400 text-sm leading-relaxed max-w-md">
+                  Un appel stratégique de 30 min pour clarifier ta zone de génie, valider ton offre et définir les 3 actions prioritaires. Gratuit, sans engagement.
+                </p>
+              </div>
+              <a
+                href="https://calendly.com/wealphialabs/30min"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-shrink-0 inline-flex items-center gap-2 bg-gold text-background font-semibold px-6 py-3 rounded-xl hover:bg-gold/90 transition-colors whitespace-nowrap"
+              >
+                <Calendar className="w-4 h-4" />
+                Réserver un appel gratuit
+              </a>
+            </div>
+          </div>
         </section>
       </div>
     </div>
