@@ -9,11 +9,11 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Shift by Max — Identifie ta zone de génie, monétise-la',
+  title: 'Vision — Identifie ta zone de génie, monétise-la',
   description: 'Un plan personnalisé généré par IA pour transformer tes compétences en revenus. Découvre ta zone de génie et lance ton activité en 90 jours.',
   keywords: ['monétisation compétences', 'freelance', 'solopreneur', 'formation en ligne', 'coaching'],
   openGraph: {
-    title: 'Shift by Max',
+    title: 'Vision',
     description: 'Identifie ta zone de génie. Monétise-la. En 90 jours.',
     type: 'website',
   },

@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         {/* Logo */}
         <Link href="/" className="text-white font-bold text-lg tracking-tight">
-          Shift by <span className="text-gold">Max</span>
+          Vis<span className="text-gold">ion</span>
         </Link>
 
         {/* Links */}
@@ -28,7 +28,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <p className="text-zinc-600 text-sm">
-          &copy; 2024 Shift by Max. Tous droits réservés.
+          &copy; 2024 Vision. Tous droits réservés.
         </p>
       </div>
     </footer>

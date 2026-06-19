@@ -7,10 +7,10 @@ export async function sendConfirmationEmail(to: string, planId: string, offer: s
   await resend.emails.send({
     from: process.env.RESEND_FROM_EMAIL!,
     to,
-    subject: 'Ton plan Shift by Max est prêt',
+    subject: 'Ton plan Vision est prêt',
     html: `
       <div style="font-family: Inter, sans-serif; background: #0A0A0B; color: white; padding: 40px; max-width: 600px; margin: 0 auto;">
-        <h1 style="color: #C9A84C; font-size: 28px; margin-bottom: 8px;">Shift by Max</h1>
+        <h1 style="color: #C9A84C; font-size: 28px; margin-bottom: 8px;">Vision</h1>
         <p style="color: #71717A; margin-bottom: 32px;">Ton plan personnalisé t'attend</p>
         <h2 style="font-size: 22px; margin-bottom: 16px;">Bienvenue dans ton nouveau chapitre.</h2>
         <p style="color: #A1A1AA; line-height: 1.7; margin-bottom: 24px;">
@@ -21,7 +21,7 @@ export async function sendConfirmationEmail(to: string, planId: string, offer: s
         </a>
         ${isMonthly ? `<p style="color: #A1A1AA; margin-bottom: 16px;">Tu vas recevoir une invitation à rejoindre la communauté Skool privée dans les prochaines minutes.</p>` : ''}
         <hr style="border-color: #1F1F23; margin: 32px 0;" />
-        <p style="color: #52525B; font-size: 14px;">Max — Shift by Max</p>
+        <p style="color: #52525B; font-size: 14px;">Vision</p>
       </div>
     `,
   })

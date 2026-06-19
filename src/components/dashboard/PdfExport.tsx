@@ -48,7 +48,7 @@ export default function PdfExport() {
         heightLeft -= pageHeight
       }
 
-      pdf.save('mon-plan-shift-by-max.pdf')
+      pdf.save('mon-plan-vision.pdf')
     } catch (err) {
       console.error('PDF export error:', err)
     } finally {

@@ -88,7 +88,7 @@ export default function Problem() {
         >
           <div className="h-px bg-gradient-to-r from-transparent via-[#1F1F23] to-transparent mb-12" />
           <p className="text-lg md:text-xl text-zinc-300 leading-relaxed">
-            <span className="text-white font-semibold">Shift by Max, c'est pas une énième formation.</span>{' '}
+            <span className="text-white font-semibold">Vision, c'est pas une énième formation.</span>{' '}
             C'est un diagnostic. 10 minutes de questions. Un plan personnalisé. Et une direction claire
             pour les 90 jours qui suivent.
           </p>

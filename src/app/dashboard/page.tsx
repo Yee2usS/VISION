@@ -41,7 +41,7 @@ export default async function DashboardPage() {
       <div className="border-b border-[#1F1F23] bg-surface sticky top-0 z-10">
         <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
           <div>
-            <p className="text-xs text-zinc-500 uppercase tracking-widest font-medium">Shift by Max</p>
+            <p className="text-xs text-zinc-500 uppercase tracking-widest font-medium">Vision</p>
             <h1 className="text-lg font-bold text-white">Mon Dashboard</h1>
           </div>
           <PdfExport />

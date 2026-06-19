@@ -24,10 +24,7 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-1 text-white font-bold text-lg tracking-tight">
-          Shift by{' '}
-          <span className="relative">
-            <span className="text-gold">Max</span>
-          </span>
+          Vis<span className="text-gold">ion</span>
         </Link>
 
         {/* Nav links */}
