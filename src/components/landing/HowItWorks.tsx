@@ -12,9 +12,9 @@ const steps = [
   },
   {
     icon: Brain,
-    title: "L'IA analyse ton profil",
+    title: 'On analyse ton profil',
     description:
-      'Claude (Anthropic) croise tes réponses pour identifier ta zone de génie unique.',
+      'On croise tes réponses pour identifier ta zone de génie unique.',
   },
   {
     icon: Map,
