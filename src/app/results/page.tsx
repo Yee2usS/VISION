@@ -3,7 +3,6 @@
 import { useEffect, useState, Suspense } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { Lock, Check, ArrowRight, ChevronDown } from 'lucide-react'
-import { createClient } from '@/lib/supabase/client'
 import Button from '@/components/ui/Button'
 import { GeneratedPlan } from '@/types'
 
@@ -29,18 +28,18 @@ function ResultsContent() {
       return
     }
 
-    const supabase = createClient()
-    supabase
-      .from('plans')
-      .select('id, plan, status')
-      .eq('id', planId)
-      .single()
-      .then(({ data, error: err }) => {
-        if (err || !data) {
+    fetch(`/api/plan/${planId}`)
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.error || !data.plan) {
           setError('Impossible de charger le plan')
         } else {
-          setPlanRecord(data)
+          setPlanRecord({ id: planId, plan: data.plan, status: data.status })
         }
+        setLoading(false)
+      })
+      .catch(() => {
+        setError('Impossible de charger le plan')
         setLoading(false)
       })
   }, [planId])
@@ -56,6 +55,9 @@ function ResultsContent() {
       const data = await res.json()
       if (data.url) {
         window.location.href = data.url
+      } else {
+        console.error('Checkout error:', data.error)
+        setCheckoutLoading(null)
       }
     } catch (err) {
       console.error(err)
