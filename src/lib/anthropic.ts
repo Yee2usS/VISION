@@ -8,17 +8,22 @@ export async function generatePlan(answers: OnboardingAnswers): Promise<Generate
 
   const message = await client.messages.create({
     model: 'claude-sonnet-4-6',
-    max_tokens: 4096,
+    max_tokens: 8000,
     messages: [{ role: 'user', content: prompt }],
   })
 
   const content = message.content[0]
   if (content.type !== 'text') throw new Error('Unexpected response type')
 
-  const jsonMatch = content.text.match(/```json\n([\s\S]*?)\n```/)
-  if (!jsonMatch) throw new Error('No JSON found in response')
+  const text = content.text
+  // Try markdown code block first, then raw JSON object
+  const codeBlock = text.match(/```(?:json)?\n?([\s\S]*?)\n?```/)
+  if (codeBlock) return JSON.parse(codeBlock[1])
 
-  return JSON.parse(jsonMatch[1])
+  const rawJson = text.match(/\{[\s\S]*\}/)
+  if (rawJson) return JSON.parse(rawJson[0])
+
+  throw new Error('No JSON found in response')
 }
 
 function buildPrompt(answers: OnboardingAnswers): string {
