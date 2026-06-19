@@ -20,16 +20,17 @@ export default function MentionsLegales() {
             <p>
               <strong className="text-zinc-300">Vision</strong> est un service édité par :<br />
               Wealphia Labs<br />
-              Forme juridique : [À compléter]<br />
-              Adresse : [À compléter]<br />
-              SIRET : [À compléter]<br />
+              Entreprise Individuelle (EI)<br />
+              Exploitant : Maxime Hermoso<br />
+              Adresse : Landes, France<br />
+              SIRET : 88331849500024<br />
               Email : <a href="mailto:vision@wealphialabs.com" className="text-gold hover:underline">vision@wealphialabs.com</a>
             </p>
           </section>
 
           <section>
             <h2 className="text-white font-semibold text-lg mb-3">Directeur de la publication</h2>
-            <p>[Nom du directeur de la publication]</p>
+            <p>Maxime Hermoso</p>
           </section>
 
           <section>
