@@ -51,12 +51,18 @@ function ConfirmationContent() {
 
         {/* Monthly community notice */}
         {isMonthly && (
-          <div className="bg-gold/5 border border-gold/20 rounded-xl p-5 mb-8 text-left">
-            <p className="text-gold font-semibold mb-1">Communauté Skool</p>
-            <p className="text-zinc-400 text-sm leading-relaxed">
-              Ton invitation à rejoindre la communauté Skool privée arrive dans quelques minutes dans ta boîte mail.
+          <a
+            href="https://www.skool.com/hustle-finance-by-max-7002/about"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block bg-gold/5 border border-gold/20 rounded-xl p-5 mb-8 text-left hover:bg-gold/10 transition-colors"
+          >
+            <p className="text-gold font-semibold mb-1">Communauté Skool privée</p>
+            <p className="text-zinc-400 text-sm leading-relaxed mb-3">
+              Accède dès maintenant aux lives mensuels et aux ressources exclusives.
             </p>
-          </div>
+            <span className="text-gold text-sm font-medium">Rejoindre la communauté →</span>
+          </a>
         )}
 
         {/* CTA */}

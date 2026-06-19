@@ -18,7 +18,14 @@ export async function sendConfirmationEmail(to: string, planId: string, offer: s
         <a href="${process.env.NEXT_PUBLIC_APP_URL}/dashboard?planId=${planId}" style="display: inline-block; background: #C9A84C; color: #0A0A0B; padding: 14px 28px; border-radius: 8px; font-weight: 600; text-decoration: none; margin-bottom: 32px;">
           Accéder à mon plan
         </a>
-        ${isMonthly ? `<p style="color: #A1A1AA; margin-bottom: 16px;">Tu vas recevoir une invitation à rejoindre la communauté Skool privée dans les prochaines minutes.</p>` : ''}
+        ${isMonthly ? `
+        <div style="background: #111113; border: 1px solid #2a2400; border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+          <p style="color: #C9A84C; font-weight: 600; margin: 0 0 8px 0;">Communauté privée Skool</p>
+          <p style="color: #A1A1AA; margin: 0 0 16px 0; font-size: 15px;">Rejoins maintenant la communauté pour accéder aux lives mensuels et aux ressources exclusives.</p>
+          <a href="https://www.skool.com/hustle-finance-by-max-7002/about" style="display: inline-block; background: transparent; color: #C9A84C; padding: 10px 20px; border-radius: 8px; font-weight: 600; text-decoration: none; border: 1px solid #C9A84C;">
+            Rejoindre la communauté →
+          </a>
+        </div>` : ''}
         <hr style="border-color: #1F1F23; margin: 32px 0;" />
         <p style="color: #52525B; font-size: 14px;">Vision</p>
       </div>
