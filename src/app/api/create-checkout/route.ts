@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
         ? process.env.STRIPE_PRICE_MONTHLY!
         : process.env.STRIPE_PRICE_ONE_SHOT!
 
-    const appUrl = process.env.NEXT_PUBLIC_APP_URL!
+    const appUrl = (process.env.NEXT_PUBLIC_APP_URL || 'https://vision-gilt-nu.vercel.app').replace(/\/$/, '')
 
     const sessionConfig: Stripe.Checkout.SessionCreateParams = {
       mode: priceType === 'monthly' ? 'subscription' : 'payment',
