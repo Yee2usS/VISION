@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation'
 import { CheckCircle, AlertTriangle, ArrowRight } from 'lucide-react'
-import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
 import PdfExport from '@/components/dashboard/PdfExport'
 import { GeneratedPlan } from '@/types'
 
@@ -12,21 +12,23 @@ interface PlanRecord {
   created_at: string
 }
 
-export default async function DashboardPage() {
-  const supabase = createClient()
-  const { data: { user } } = await supabase.auth.getUser()
+export default async function DashboardPage({
+  searchParams,
+}: {
+  searchParams: { planId?: string }
+}) {
+  const planId = searchParams.planId
 
-  if (!user) {
+  if (!planId) {
     redirect('/onboarding')
   }
 
+  const supabase = createAdminClient()
   const { data: planRecord, error } = await supabase
     .from('plans')
     .select('id, plan, status, offer_type, created_at')
-    .eq('user_id', user.id)
+    .eq('id', planId)
     .eq('status', 'paid')
-    .order('created_at', { ascending: false })
-    .limit(1)
     .single() as { data: PlanRecord | null; error: unknown }
 
   if (error || !planRecord) {

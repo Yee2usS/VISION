@@ -15,7 +15,7 @@ export async function sendConfirmationEmail(to: string, planId: string, offer: s
         <p style="color: #A1A1AA; line-height: 1.7; margin-bottom: 24px;">
           Ton plan a été généré et est disponible dans ton dashboard. 90 jours, étape par étape — c'est maintenant que ça commence.
         </p>
-        <a href="${process.env.NEXT_PUBLIC_APP_URL}/dashboard" style="display: inline-block; background: #C9A84C; color: #0A0A0B; padding: 14px 28px; border-radius: 8px; font-weight: 600; text-decoration: none; margin-bottom: 32px;">
+        <a href="${process.env.NEXT_PUBLIC_APP_URL}/dashboard?planId=${planId}" style="display: inline-block; background: #C9A84C; color: #0A0A0B; padding: 14px 28px; border-radius: 8px; font-weight: 600; text-decoration: none; margin-bottom: 32px;">
           Accéder à mon plan
         </a>
         ${isMonthly ? `<p style="color: #A1A1AA; margin-bottom: 16px;">Tu vas recevoir une invitation à rejoindre la communauté Skool privée dans les prochaines minutes.</p>` : ''}

@@ -60,7 +60,7 @@ function ConfirmationContent() {
         )}
 
         {/* CTA */}
-        <Link href="/dashboard">
+        <Link href={planId ? `/dashboard?planId=${planId}` : '/dashboard'}>
           <Button size="lg" className="w-full">
             Accéder à mon dashboard
             <ArrowRight className="w-5 h-5" />
