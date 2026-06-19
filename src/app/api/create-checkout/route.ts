@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
 import { stripe } from '@/lib/stripe'
-import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
 
 export async function POST(req: NextRequest) {
   try {
@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
     const session = await stripe.checkout.sessions.create(sessionConfig)
 
     // Update plan with session id
-    const supabase = createClient()
+    const supabase = createAdminClient()
     await supabase
       .from('plans')
       .update({ stripe_session_id: session.id })

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { stripe } from '@/lib/stripe'
-import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
 import { sendConfirmationEmail } from '@/lib/resend'
 
 export const dynamic = 'force-dynamic'
@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
     const email = session.customer_details?.email
 
     if (planId) {
-      const supabase = createClient()
+      const supabase = createAdminClient()
       await supabase
         .from('plans')
         .update({
