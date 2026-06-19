@@ -35,12 +35,6 @@ export default function Navbar() {
           >
             Comment ça marche
           </a>
-          <a
-            href="#offres"
-            className="text-zinc-400 hover:text-white transition-colors text-sm font-medium"
-          >
-            Offres
-          </a>
         </div>
 
         {/* CTA */}
