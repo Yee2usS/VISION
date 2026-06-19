@@ -7,7 +7,7 @@ const problems = [
   {
     number: '01',
     icon: Zap,
-    title: 'Tu commences, tu t\'emballas, tu t\'arrêtes',
+    title: 'Tu commences, tu t\'emballes, tu t\'arrêtes',
     description:
       "Un projet, une idée, une formation. T'es à fond pendant deux semaines. Puis la vie reprend. Et ça recommence.",
   },
