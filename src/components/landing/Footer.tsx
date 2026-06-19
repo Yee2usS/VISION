@@ -12,9 +12,9 @@ export default function Footer() {
         {/* Links */}
         <div className="flex items-center gap-6">
           {[
-            { label: 'Mentions légales', href: '#' },
-            { label: 'Politique de confidentialité', href: '#' },
-            { label: 'CGV', href: '#' },
+            { label: 'Mentions légales', href: '/mentions-legales' },
+            { label: 'Politique de confidentialité', href: '/politique-de-confidentialite' },
+            { label: 'CGV', href: '/cgv' },
           ].map((link) => (
             <Link
               key={link.label}
@@ -28,7 +28,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <p className="text-zinc-600 text-sm">
-          &copy; 2024 Vision. Tous droits réservés.
+          &copy; 2026 Vision. Tous droits réservés.
         </p>
       </div>
     </footer>
