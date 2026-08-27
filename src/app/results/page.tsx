@@ -44,6 +44,10 @@ function ResultsContent() {
       })
   }, [planId])
 
+  function scrollToPricing() {
+    document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
   async function handleCheckout(priceType: 'one-shot' | 'monthly') {
     setCheckoutLoading(priceType)
     try {
@@ -106,17 +110,21 @@ function ResultsContent() {
           <h2 className="text-xl font-semibold text-white mb-4">Ce que l'IA recommande</h2>
           <div className="bg-surface border border-[#1F1F23] rounded-2xl p-6">
             <p className="text-gold font-semibold text-lg mb-2">{plan.recommendedOffer}</p>
-            <div className="relative">
+            <button
+              type="button"
+              onClick={scrollToPricing}
+              className="relative w-full text-left cursor-pointer group"
+            >
               <p className="text-zinc-400 leading-relaxed blur-sm select-none" aria-hidden>
                 {plan.offerDescription}
               </p>
-              <div className="absolute inset-0 flex items-center justify-center bg-surface/80 rounded-lg">
-                <div className="flex items-center gap-2 text-zinc-400">
+              <div className="absolute inset-0 flex items-center justify-center bg-surface/80 rounded-lg group-hover:bg-surface/70 transition-colors">
+                <div className="flex items-center gap-2 text-zinc-400 group-hover:text-gold transition-colors">
                   <Lock className="w-4 h-4" />
                   <span className="text-sm font-medium">Débloquer mon plan complet</span>
                 </div>
               </div>
-            </div>
+            </button>
           </div>
         </section>
 
@@ -126,11 +134,16 @@ function ResultsContent() {
           <div className="space-y-3">
             {plan.roadmap?.map((week, i) => {
               const isVisible = i < 2
+              const Wrapper = isVisible ? 'div' : 'button'
+              const wrapperProps = isVisible
+                ? {}
+                : { type: 'button' as const, onClick: scrollToPricing }
               return (
-                <div
+                <Wrapper
                   key={week.week}
-                  className={`bg-surface border border-[#1F1F23] rounded-xl p-5 transition-all ${
-                    !isVisible ? 'relative overflow-hidden' : ''
+                  {...wrapperProps}
+                  className={`bg-surface border border-[#1F1F23] rounded-xl p-5 transition-all w-full text-left ${
+                    !isVisible ? 'relative overflow-hidden cursor-pointer group' : ''
                   }`}
                 >
                   {isVisible ? (
@@ -168,7 +181,7 @@ function ResultsContent() {
                       </div>
                       {i === 2 && (
                         <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-b from-surface/50 to-surface rounded-xl">
-                          <div className="flex items-center gap-2 text-zinc-400 bg-background/80 px-4 py-2 rounded-full border border-[#1F1F23]">
+                          <div className="flex items-center gap-2 text-zinc-400 bg-background/80 px-4 py-2 rounded-full border border-[#1F1F23] group-hover:text-gold">
                             <Lock className="w-4 h-4" />
                             <span className="text-sm font-medium">10 semaines de plus disponibles</span>
                           </div>
@@ -176,14 +189,14 @@ function ResultsContent() {
                       )}
                     </>
                   )}
-                </div>
+                </Wrapper>
               )
             })}
           </div>
         </section>
 
         {/* Pricing section */}
-        <section>
+        <section id="pricing">
           <div className="text-center mb-8">
             <h2 className="text-2xl font-bold text-white mb-2">Débloquer ton plan complet</h2>
             <p className="text-zinc-400">Choisis la formule qui te correspond</p>
@@ -200,7 +213,7 @@ function ResultsContent() {
                   'Plan complet débloqué',
                   'Roadmap 12 semaines',
                   'Export PDF',
-                  'Accès à la communauté Skool (contenu gratuit)',
+                  'Toujours accès au Skool gratuit',
                 ].map((f) => (
                   <li key={f} className="flex items-center gap-2 text-sm text-zinc-300">
                     <Check className="w-4 h-4 text-zinc-500" />
@@ -208,6 +221,9 @@ function ResultsContent() {
                   </li>
                 ))}
               </ul>
+              <p className="text-xs text-zinc-500 mb-6">
+                <span className="font-semibold text-zinc-400">Pour qui :</span> ceux qui veulent le plan et se débrouillent seuls
+              </p>
               <Button
                 variant="outline"
                 className="w-full"
@@ -233,11 +249,11 @@ function ResultsContent() {
               </p>
               <ul className="space-y-2 mb-6">
                 {[
-                  'Plan complet débloqué',
-                  'Roadmap 12 semaines + Export PDF',
-                  'Membre premium Skool',
-                  'Contenu exclusif & lives hebdomadaires',
-                  'Ressources & accompagnement',
+                  'Contenu du plan one shot +',
+                  'Accès contenu premium Skool',
+                  'Ressources exclusives',
+                  'Lives hebdomadaires',
+                  'Mises à jour',
                 ].map((f) => (
                   <li key={f} className="flex items-center gap-2 text-sm text-zinc-300">
                     <Check className="w-4 h-4 text-gold" />
@@ -245,6 +261,9 @@ function ResultsContent() {
                   </li>
                 ))}
               </ul>
+              <p className="text-xs text-zinc-500 mb-6">
+                <span className="font-semibold text-zinc-400">Pour qui :</span> ceux qui veulent du suivi et de l'accompagnement dans la durée
+              </p>
               <Button
                 className="w-full"
                 loading={checkoutLoading === 'monthly'}
