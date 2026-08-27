@@ -193,10 +193,15 @@ function ResultsContent() {
             {/* One-shot */}
             <div className="bg-surface border border-[#1F1F23] rounded-2xl p-7 hover:border-gold/30 transition-all">
               <h3 className="font-semibold text-white text-lg mb-1">Le Plan</h3>
-              <p className="text-zinc-400 text-sm mb-4">Plan complet, accès à vie</p>
+              <p className="text-zinc-400 text-sm mb-4">Paiement unique · accès à vie</p>
               <p className="text-4xl font-bold text-white mb-6">97€</p>
               <ul className="space-y-2 mb-6">
-                {['Plan complet débloqué', 'Roadmap 12 semaines', 'Export PDF'].map((f) => (
+                {[
+                  'Plan complet débloqué',
+                  'Roadmap 12 semaines',
+                  'Export PDF',
+                  'Accès à la communauté Skool (contenu gratuit)',
+                ].map((f) => (
                   <li key={f} className="flex items-center gap-2 text-sm text-zinc-300">
                     <Check className="w-4 h-4 text-zinc-500" />
                     {f}
@@ -222,12 +227,18 @@ function ResultsContent() {
                 </span>
               </div>
               <h3 className="font-semibold text-white text-lg mb-1">Le Plan + Communauté</h3>
-              <p className="text-zinc-400 text-sm mb-4">Plan + communauté privée</p>
+              <p className="text-zinc-400 text-sm mb-4">Plan + accès premium Skool</p>
               <p className="text-4xl font-bold text-white mb-6">
                 29,95€<span className="text-base text-zinc-500 font-normal">/mois</span>
               </p>
               <ul className="space-y-2 mb-6">
-                {['Tout du Plan +', 'Communauté Skool privée', 'Lives mensuels', 'Ressources exclusives'].map((f) => (
+                {[
+                  'Plan complet débloqué',
+                  'Roadmap 12 semaines + Export PDF',
+                  'Membre premium Skool',
+                  'Contenu exclusif & lives mensuels',
+                  'Ressources & accompagnement',
+                ].map((f) => (
                   <li key={f} className="flex items-center gap-2 text-sm text-zinc-300">
                     <Check className="w-4 h-4 text-gold" />
                     {f}
@@ -239,7 +250,7 @@ function ResultsContent() {
                 loading={checkoutLoading === 'monthly'}
                 onClick={() => handleCheckout('monthly')}
               >
-                Rejoindre la communauté
+                Rejoindre en premium
                 <ArrowRight className="w-4 h-4" />
               </Button>
             </div>
