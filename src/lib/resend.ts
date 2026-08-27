@@ -21,7 +21,7 @@ export async function sendConfirmationEmail(to: string, planId: string, offer: s
         ${isMonthly ? `
         <div style="background: #111113; border: 1px solid #2a2400; border-radius: 12px; padding: 20px; margin-bottom: 24px;">
           <p style="color: #C9A84C; font-weight: 600; margin: 0 0 8px 0;">Communauté privée Skool</p>
-          <p style="color: #A1A1AA; margin: 0 0 16px 0; font-size: 15px;">Rejoins maintenant la communauté pour accéder aux lives mensuels et aux ressources exclusives.</p>
+          <p style="color: #A1A1AA; margin: 0 0 16px 0; font-size: 15px;">Rejoins maintenant la communauté pour accéder aux lives hebdomadaires et aux ressources exclusives.</p>
           <a href="https://www.skool.com/hustle-finance-by-max-7002/about" style="display: inline-block; background: transparent; color: #C9A84C; padding: 10px 20px; border-radius: 8px; font-weight: 600; text-decoration: none; border: 1px solid #C9A84C;">
             Rejoindre la communauté →
           </a>

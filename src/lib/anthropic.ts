@@ -7,8 +7,8 @@ export async function generatePlan(answers: OnboardingAnswers): Promise<Generate
   const prompt = buildPrompt(answers)
 
   const message = await client.messages.create({
-    model: 'claude-sonnet-4-6',
-    max_tokens: 8000,
+    model: 'claude-sonnet-5',
+    max_tokens: 16000,
     messages: [{ role: 'user', content: prompt }],
   })
 

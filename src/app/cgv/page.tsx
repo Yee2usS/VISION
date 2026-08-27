@@ -32,7 +32,7 @@ export default function CGV() {
               </div>
               <div className="bg-surface border border-[#1F1F23] rounded-xl p-4">
                 <p className="text-zinc-300 font-medium mb-1">Le Plan + Communauté — 29,95€ TTC/mois</p>
-                <p>Abonnement mensuel incluant le plan complet, l'accès à la communauté privée Skool, les lives mensuels et les ressources exclusives. Sans engagement, résiliable à tout moment.</p>
+                <p>Abonnement mensuel incluant le plan complet, l'accès premium à la communauté Skool, les lives hebdomadaires et les ressources exclusives. Sans engagement, résiliable à tout moment.</p>
               </div>
             </div>
           </section>

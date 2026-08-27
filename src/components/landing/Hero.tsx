@@ -61,7 +61,7 @@ export default function Hero() {
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gold/30 bg-gold/5 text-gold text-sm font-medium mb-8"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
-          Votre plan personnalisé en 10 minutes
+          Ton plan personnalisé en 10 minutes
         </motion.div>
 
         {/* H1 */}

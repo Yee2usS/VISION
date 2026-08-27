@@ -236,7 +236,7 @@ function ResultsContent() {
                   'Plan complet débloqué',
                   'Roadmap 12 semaines + Export PDF',
                   'Membre premium Skool',
-                  'Contenu exclusif & lives mensuels',
+                  'Contenu exclusif & lives hebdomadaires',
                   'Ressources & accompagnement',
                 ].map((f) => (
                   <li key={f} className="flex items-center gap-2 text-sm text-zinc-300">

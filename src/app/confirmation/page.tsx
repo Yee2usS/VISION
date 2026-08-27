@@ -59,7 +59,7 @@ function ConfirmationContent() {
           >
             <p className="text-gold font-semibold mb-1">Communauté Skool privée</p>
             <p className="text-zinc-400 text-sm leading-relaxed mb-3">
-              Accède dès maintenant aux lives mensuels et aux ressources exclusives.
+              Accède dès maintenant aux lives hebdomadaires et aux ressources exclusives.
             </p>
             <span className="text-gold text-sm font-medium">Rejoindre la communauté →</span>
           </a>
