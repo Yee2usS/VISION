@@ -29,6 +29,19 @@ export async function generatePlan(answers: OnboardingAnswers): Promise<Generate
 function buildPrompt(answers: OnboardingAnswers): string {
   return `Tu es un expert en monétisation de compétences et création d'offres digitales. Analyse les réponses suivantes d'un utilisateur et génère un plan personnalisé complet en JSON.
 
+RÈGLES DE PERSONNALISATION (à respecter absolument) :
+
+1. Chaque recommandation que tu formules doit être directement rattachée à une réponse précise donnée par l'utilisateur. Si une phrase de ton plan pourrait s'appliquer telle quelle à n'importe qui d'autre ayant rempli ce questionnaire, réécris-la pour qu'elle soit ancrée dans les détails spécifiques de CETTE personne — ses mots, sa situation, ses contraintes précises.
+
+2. Interdiction formelle de conseils génériques applicables à tout le monde ("sois régulier", "crée du contenu de valeur", "reste patient"). Chaque conseil doit être exécutable uniquement par cette personne précise, avec ses contraintes de temps, son style de communication, et son marché cible tels qu'elle les a décrits.
+
+3. Exemple à éviter : "Crée du contenu régulièrement sur les réseaux sociaux pour te faire connaître."
+   Exemple attendu : "Vu que tu as dit être à l'aise à l'oral mais pas à l'écrit, et que tu ne disposes que de 5h/semaine, poste une vidéo de 2 minutes chaque dimanche sur [sujet précis tiré de sa zone de génie] plutôt que du contenu écrit chronophage."
+
+4. N'invente jamais de statistiques de marché, de données chiffrées précises sur un secteur, ou de faits vérifiables sur des entreprises ou plateformes. Reste sur des conseils méthodologiques et stratégiques ancrés dans le bon sens et l'expérience, jamais sur des "faits" chiffrés que tu ne peux pas garantir exacts.
+
+5. Avant de conclure, remplis le champ "personalizationCheck" avec 5 éléments précis et distincts tirés mot pour mot ou presque des réponses de l'utilisateur, que le reste du plan utilise explicitement. Ce champ n'est pas montré à l'utilisateur — c'est un contrôle qualité interne. Si tu n'arrives pas à en citer 5 clairement distincts, retravaille le plan pour qu'il soit plus spécifique avant de répondre.
+
 RÉPONSES DE L'UTILISATEUR:
 
 Phase 1 - Déclencheur:
@@ -88,9 +101,10 @@ GÉNÈRE UN PLAN EN JSON AVEC EXACTEMENT CETTE STRUCTURE:
   ],
   "strengths": ["Point fort 1", "Point fort 2", "Point fort 3"],
   "warnings": ["Attention 1", "Attention 2"],
-  "firstSteps": ["Première action dans les 24h", "Deuxième action cette semaine", "Troisième action ce mois-ci"]
+  "firstSteps": ["Première action dans les 24h", "Deuxième action cette semaine", "Troisième action ce mois-ci"],
+  "personalizationCheck": ["Élément précis 1 tiré des réponses", "Élément précis 2", "Élément précis 3", "Élément précis 4", "Élément précis 5"]
 }
 \`\`\`
 
-La roadmap doit couvrir 12 semaines (90 jours). Sois très spécifique et personnalisé. Utilise le tutoiement. Sois encourageant mais réaliste.`
+La roadmap doit couvrir 12 semaines (90 jours). Sois très spécifique et personnalisé — relis chaque phrase du plan et demande-toi si elle pourrait être copiée-collée dans le plan de quelqu'un d'autre ; si oui, réécris-la avec les détails propres à cette personne. Utilise le tutoiement. Sois encourageant mais réaliste.`
 }

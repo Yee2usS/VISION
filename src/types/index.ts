@@ -54,6 +54,7 @@ export interface GeneratedPlan {
   strengths: string[]
   warnings: string[]
   firstSteps: string[]
+  personalizationCheck?: string[]
 }
 
 export interface RoadmapWeek {
