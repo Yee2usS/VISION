@@ -261,8 +261,11 @@ function ResultsContent() {
                   </li>
                 ))}
               </ul>
-              <p className="text-xs text-zinc-500 mb-6">
+              <p className="text-xs text-zinc-500 mb-4">
                 <span className="font-semibold text-zinc-400">Pour qui :</span> ceux qui veulent du suivi et de l'accompagnement dans la durée
+              </p>
+              <p className="text-sm text-gold/90 italic mb-6">
+                Cette fois-ci, fais-toi la promesse de tenir au moins 3 mois. Ton futur toi te remerciera.
               </p>
               <Button
                 className="w-full"
