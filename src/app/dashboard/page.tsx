@@ -46,7 +46,7 @@ export default async function DashboardPage({
             <p className="text-xs text-zinc-500 uppercase tracking-widest font-medium">Vision</p>
             <h1 className="text-lg font-bold text-white">Mon Dashboard</h1>
           </div>
-          <PdfExport />
+          <PdfExport plan={plan} />
         </div>
       </div>
 
